@@ -20,12 +20,30 @@ const gallery = images.filter(image => {
     galleryItem.append(itemA)
     galleryRef.append(galleryItem)
 })
-
-console.log(galleryRef);
+const lightBoXRef = document.querySelector('.lightbox__image');
 galleryRef.addEventListener('click', clickOnImg);
 function clickOnImg(event) {
-    console.log(event)
+    event.preventDefault()
+        if (event.target.nodeName !== "IMG") return;
+    // console.log(event.target.dataSource)
+
+    
+    lightBoXRef.src= event.target.dataSource;
+    // console.log(lightBoXRef)
+
 }
 
+galleryRef.setAttribute('data-action', 'open-lightbox');
 
+const lighttboxRef = document.querySelector('.js-lightbox');
+const openModalRef = document.querySelector('.gallery[data-action="open-lightbox"]');
+const closeModalRef = document.querySelector('.lightbox button[data-action="close-lightbox"]');
 
+openModalRef.addEventListener('click', toggleModal);
+closeModalRef.addEventListener('click', toggleModal);
+
+function toggleModal() {
+lighttboxRef.classList.toggle('is-open');
+}
+
+lightBoXRef.removeAttribute('src');

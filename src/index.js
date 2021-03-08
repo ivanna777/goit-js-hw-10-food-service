@@ -3,13 +3,15 @@ import './styles.css';
 
 const compiledTemplate = require("../src/menu.hbs");
 
-console.log(menu)
-console.log(compiledTemplate)
+const menuContainer = document.querySelector('.js-menu');
+const menuMarkup = createMenuMarkup(menu);
+
+menuContainer.insertAdjacentHTML('beforeend', menuMarkup);
 
 function createMenuMarkup(menu) {
   return menu.map(compiledTemplate).join('')
 }
-console.log(createMenuMarkup(menu))
+console.log(menuContainer)
 
 const Theme = {
     LIGHT: 'light-theme',

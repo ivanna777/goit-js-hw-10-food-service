@@ -1,17 +1,11 @@
 import menu from '../src/menu.json';
+import menuTemplate from "../src/menu.hbs";
 import './styles.css';
 
-const compiledTemplate = require("../src/menu.hbs");
-
+const compiledTemplate = menuTemplate(menu);
 const menuContainer = document.querySelector('.js-menu');
-const menuMarkup = createMenuMarkup(menu);
 
-menuContainer.insertAdjacentHTML('beforeend', menuMarkup);
-
-function createMenuMarkup(menu) {
-  return menu.map(compiledTemplate).join('')
-}
-console.log(menuContainer)
+menuContainer.insertAdjacentHTML('afterbegin', compiledTemplate);
 
 const Theme = {
     LIGHT: 'light-theme',
